@@ -1,0 +1,16 @@
+cflags = -Wall
+CC = g++
+
+rule cc
+  command = $CC $cflags -c $in -o $out
+
+rule link
+  command = $CC $in -o $out
+
+build mt_server.o: cc mt_server.cpp
+build mt_server: link mt_server.o
+build client.o: cc client.cpp
+build client: link client.o
+
+default mt_server client
+
